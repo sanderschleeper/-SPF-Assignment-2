@@ -1,0 +1,121 @@
+%% 1 (A). 
+% Set variables.
+
+% T in years.
+T      = 3/12;
+
+% deltaT in years.
+deltaT = 1/12;
+
+% N = amount of steps.
+N      = T / deltaT;
+
+% r = continuously compounded interest rate per year.
+r      = log((1+0.005/4)^4);
+
+% sigma per year. 
+sigma  = 0.0438 * sqrt(252);
+
+
+S0     = 3500.31;
+M      = 1000;
+K      = 3300;
+
+%% Run function.
+% Set seed. 
+rng(1);
+% Set test parameters.
+sigma = 0
+% Simulate M paths. 
+[endPrices, avgPayoff] = runpathsfuncA(r, sigma, deltaT, N, S0, M, K);
+
+% Calculate option value at t=0.
+VS0 = exp(-r*T) * avgPayoff;
+
+histogram(endPrices)
+
+%% 1 (B).
+
+% Set variables.
+
+% T = 3 months.
+T      = 1;
+
+% deltaT = 1 month = 1/3.
+deltaT = 1/63;
+
+% N = amount of steps = 3.
+N      = T / deltaT;
+
+% r = interest rate per 3 month.
+r      = 0.005;
+
+% sigma = standard deviation per 3 month. 
+sigma  = 0.0438 * sqrt(63);
+
+
+S0     = 3500.31;
+M      = 5000;
+K      = 3300;
+
+%% Run function.
+rng(1);
+[endPrices, avgPayoff] = runpathsfunc(r, sigma, deltaT, N, S0, M, K);
+
+% Calculate option value at t=0.
+VS0 = exp(-r*T) * avgPayoff;
+
+histogram(endPrices)
+
+%% 1 (C).
+
+% Set variables.
+
+% T = 3 months.
+T      = 1;
+
+% r = interest rate per 3 month.
+r      = 0.005;
+
+% sigma = standard deviation per 3 month. 
+sigma  = 0.0438 * sqrt(63);
+
+
+S0     = 3500.31;
+M      = 10000;
+K      = 3300;
+
+%% Run function.
+rng(1);
+[endPrices, avgPayoff] = simpathfuncc(T, r, sigma, S0, M, K);
+
+% Calculate option value at t=0.
+VS0 = exp(-r*T) * avgPayoff
+
+histogram(endPrices)
+
+%% 2 (A). 
+
+% Set variables.
+
+T     = 1;
+K     = 3300;
+S0    = 3300;
+sigma = 0.2007;
+r     = 0.005;
+
+% Calculate option value using Black Scholes. 
+
+d1 = (log(S0) - log(K) + (r+1/2*sigma^2)*T) / sigma*sqrt(T);
+
+
+
+
+
+
+
+
+
+
+
+    

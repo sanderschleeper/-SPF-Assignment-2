@@ -1,0 +1,12 @@
+function [price] = simpathfuncA(r, sigma, deltaT, N, S0)
+% Set S(0). 
+s0 = S0;
+
+% (Monte Carlo) Simulate 
+for i = 1:N
+    rnum = randn;
+    s0 = s0 + s0*(r*deltaT + sigma*sqrt(deltaT)*rnum);
+end
+    
+price = s0;
+end
